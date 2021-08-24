@@ -3,6 +3,7 @@ import { Composer } from 'telegraf';
 
 const help: string =
     `*Commands Available :*\n\n` +
+    `\n` +  
     `/jiosaavn or /jsvn : Play songs from JioSaavn\n` +
     `/ytplay or /yt : Play songs from YouTube\n` +
     `/play : Reply this command to audio files to play the file\n` +
@@ -14,5 +15,10 @@ const help: string =
     `/help : Show this Menu`
 
 export const Help = Composer.command('help', async ctx => {
-    await ctx.replyWithMarkdownV2(help);
+    await ctx.telegram.sendChatAction(ctx.chat.id, "typing");
+    
+    if (ctx.chat.type === 'private') return await ctx.reply("This Command works on Group Only");
+    
+    if (ctx.chat.type === 'group') return await ctx.replyWithMarkdownV2(help);
+    
 })
