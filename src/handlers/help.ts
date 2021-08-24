@@ -16,6 +16,6 @@ const help: string =
 
 export const Help = Composer.command('help', async ctx => {
     
-    await ctx.replyWithMarkdownV2(ctx.chat.type === 'private' ? 'This Command works on Group Only' : help);
+    await ctx.replyWithMarkdownV2(ctx.chat.type === 'private' ? help : 'This Command works on  PM Only' );
     
 })
