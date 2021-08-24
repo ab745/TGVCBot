@@ -7,7 +7,7 @@ const help: string =
     `/jiosaavn or /jsvn : Play songs from JioSaavn\n` +
     `/ytplay or /yt : Play songs from YouTube\n` +
     `/play : Reply this command to audio files to play the file\n` +
-    `/queue or /next : Check queued songs list\n` +
+    `/queue or /playlist : Check queued songs list\n` +
     `/p or /pause : Pause the stream\n` +
     `/r or /pause: Resume the stream\n` +
     `/next or /skip : Skip the current song\n` +
