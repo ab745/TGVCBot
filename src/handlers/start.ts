@@ -18,7 +18,7 @@ export const Start = Composer.command('start', async (ctx) => {
         `Maintained by <a href="https://t.me/NeuroticAssociation">Neurotic Association</a>`
     await ctx.replyWithHTML(text, {
         ...Markup.inlineKeyboard([
-            [Markup.button.url('View Source', 'https://github.com/ArnabXD/TGVCBot')]
+            [Markup.button.url('Add me', 'http://t.me/LyciaMusicBot?startgroup=true')]
         ]),
         disable_web_page_preview: true
     })
