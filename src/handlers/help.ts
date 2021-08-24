@@ -16,12 +16,6 @@ const help: string =
 
 export const Help = Composer.command('help', async ctx => {
     
-    if (ctx.chat.type === 'channel') return await ctx.reply("This Command works in private Only");
-    
-    if (ctx.chat.type === 'supergroup') return await ctx.reply("This Command works in private Only");
-    
-    if (ctx.chat.type === 'group') return await ctx.reply("This Command works in private Only");
-    
-    if (ctx.chat.type === 'private') return await ctx.replyWithMarkdownV2(help);
+    await ctx.replyWithMarkdownV2(ctx.chat.type === 'private' ? 'This Command works on Group Only' : help);
     
 })
