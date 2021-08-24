@@ -27,8 +27,8 @@ export const Play = Composer.command(['play', 'pl'], async ctx => {
         {
             title: message.audio.title!,
             duration: message.audio.duration.toString(),
-            image: message.audio.thumb?.file_id ?? `https://telegra.ph/file/6b07279fd80ef2b844ed0.png`,
-            artist: message.audio.performer ?? "TGVCBot",
+            image: message.audio.thumb?.file_id ?? `https://telegra.ph/file/4a058c58b9e783da5d184.jpg`,
+            artist: message.audio.performer ?? "Lycia Music",
             link: getMessageLink(ctx.chat.id, message.message_id),
             mp3_link: message.audio.file_id,
             provider: 'telegram',
