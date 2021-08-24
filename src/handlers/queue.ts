@@ -10,7 +10,7 @@ import { Composer } from 'telegraf';
 import { queue } from '../queue';
 import { escape } from 'html-escaper';
 
-export const QueueList = Composer.command([`queue`, `q`], async (ctx) => {
+export const QueueList = Composer.command([`queue`, `playlist`], async (ctx) => {
     let data = queue.getAll(ctx.chat.id);
     if (!data || data.length === 0) return await ctx.replyWithHTML("Queue is empty");
 
