@@ -32,15 +32,6 @@ export const hhmmss = (duration: string): string => {
     return str;
 }
 
-export const getPosterImageUrl = (image: string, title: string, artist: string = "@ArnabXD/TGVCBot") => {
-    let query = stringify({
-        image,
-        title: (title.length > 55) ? title.slice(0, 52) + "..." : title,
-        artist: (artist.length > 45) ? artist.slice(0, 42) + "..." : artist,
-        // x: Date.now()
-    })
-    return `https://music-banner.herokuapp.com/banner?${query}`;
-}
 
 export const sendPlayingMessage = async (chat: Chat, data: QueueData) => {
     let text =
@@ -48,11 +39,11 @@ export const sendPlayingMessage = async (chat: Chat, data: QueueData) => {
         `<b>&#10143;</b> Duration : ${hhmmss(data.duration)}\n` +
         `<b>&#10143;</b> Requested by <a href="tg://user?id=${data.requestedBy.id}">${escape(data.requestedBy.first_name)}</a>`;
     try {
-        await bot.telegram.sendPhoto(chat.id, getPosterImageUrl(data.image, data.title, data.artist), {
+        await bot.telegram.sendPhoto(chat.id, "https://telegra.ph/file/4a058c58b9e783da5d184.jpg", {
             caption: text,
             parse_mode: 'HTML'
         });
-        console.log(`[TGVCBot][${chat.name}] Playing - ${data.title}`);
+        console.log(`[LyciaMusicBot][${chat.name}] Playing - ${data.title}`);
     } catch (err) {
         await bot.telegram.sendMessage(chat.id, text, { parse_mode: 'HTML' });
         await log(escape(String(err)));
