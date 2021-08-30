@@ -14,7 +14,7 @@ const composer = new Composer();
 
 export default composer;
 
-composer.command([`queue`, `q`], ctx => {
+composer.command([`queue`, `playlist`], ctx => {
   let data = queue.getAll(ctx.chat.id);
   if (!data || data.length === 0)
     return ctx.reply('Queue is empty', { parse_mode: 'HTML' });
