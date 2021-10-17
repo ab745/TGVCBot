@@ -7,14 +7,15 @@
  */
 
 import { Composer } from 'grammy';
-import { playOrQueueSong } from '../tgcalls';
+import env from '../env';
+import { tgcalls } from '../tgcalls';
 import { getMessageLink } from '../utils';
 
 const composer = new Composer();
 
 export default composer;
 
-composer.command(['play', 'pl'], async ctx => {
+composer.command(['play', 'pl'], async (ctx) => {
   await ctx.api.sendChatAction(ctx.chat.id, 'typing');
 
   if (ctx.chat.type === 'private')
@@ -28,22 +29,20 @@ composer.command(['play', 'pl'], async ctx => {
 
   let { reply_to_message: message } = ctx.message;
 
-  await playOrQueueSong(
+  await tgcalls.streamOrQueue(
     { id: ctx.chat.id, name: ctx.chat.title },
     {
       title: message.audio!.title!,
       duration: message.audio!.duration.toString(),
-      image:
-        message.audio!.thumb?.file_id ??
-        `https://telegra.ph/file/4a058c58b9e783da5d184.jpg`,
+      image: message.audio!.thumb?.file_id ?? env.THUMBNAIL,
       artist: message.audio!.performer ?? 'TGVCBot',
       link: getMessageLink(ctx.chat.id, message.message_id),
       mp3_link: message.audio!.file_id,
       provider: 'telegram',
       requestedBy: {
         first_name: ctx.from.first_name,
-        id: ctx.from.id,
-      },
-    },
+        id: ctx.from.id
+      }
+    }
   );
 });
