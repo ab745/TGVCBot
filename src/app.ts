@@ -10,15 +10,18 @@ import bot, { log } from './bot';
 import { startUserBot } from './userbot';
 import { InitMiddleWares } from './middlewares';
 import { InitHandlers } from './handlers';
+import { TestFFMPEG } from './ffmpeg';
 
 (async () => {
+  TestFFMPEG(); // Check if FFMPEG is installed or not
+
   InitMiddleWares();
   InitHandlers();
+
   await startUserBot();
-  await bot.api.getMe();
   await log('Bot is Running');
   await bot.start({
     drop_pending_updates: true,
-    allowed_updates: ['message', 'callback_query'],
+    allowed_updates: ['message', 'callback_query']
   });
 })();
